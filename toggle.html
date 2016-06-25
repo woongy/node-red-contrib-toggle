@@ -3,7 +3,8 @@
     category: "advanced-function",
     color: "#eeeeee",
     defaults: {
-      name: { value: "" }
+      name: { value: "" },
+      initial: { value: false }
     },
     inputs: 1,
     outputs: 1,
@@ -22,5 +23,10 @@
   <div class="form-row">
     <label for="node-input-name"><i class="icon-tag"></i> Name</label>
     <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  <div class="form-row">
+    <label>&nbsp;</label>
+    <input type="checkbox" id="node-input-initial" style="display: inline-block; width: auto; vertical-align: top;">
+    <label for="node-input-initial" style="width: 70%;">Toggle on at start?</label>
   </div>
 </script>

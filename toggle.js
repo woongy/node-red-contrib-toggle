@@ -3,28 +3,29 @@ module.exports = function(RED) {
 
   function ToggleNode(config) {
     RED.nodes.createNode(this, config);
-    this.open = false;
+    this.open = config.initial;
 
     var node = this;
 
     node.on("input", function(msg) {
       if (msg.topic === "toggle") {
-        switch (msg.payload) {
-          case true:
-            node.open = true;
-            node.status({ fill: "green", shape: "dot", text: "on" });
-            break;
-          case false:
-            node.open = false;
-            node.status({ fill: "grey", shape: "dot", text: "off" });
-            break;
-        }
+        msg.payload ? toggleOn() : toggleOff();
       } else if (node.open) {
         node.send(msg);
       }
     });
 
-    node.status({ fill: "grey", shape: "dot", text: "off" });
+    function toggleOn() {
+      node.open = true;
+      node.status({ fill: "green", shape: "dot", text: "on" });
+    }
+
+    function toggleOff() {
+      node.open = false;
+      node.status({ fill: "grey", shape: "dot", text: "off" });
+    }
+
+    node.open ? toggleOn() : toggleOff();
   }
 
   RED.nodes.registerType("toggle", ToggleNode);
