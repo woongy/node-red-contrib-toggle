@@ -4,13 +4,14 @@
     color: "#eeeeee",
     defaults: {
       name: { value: "" },
+      duration: { value: "" },
       initial: { value: false }
     },
     inputs: 1,
     outputs: 1,
     icon: "function.png",
     label: function() {
-      return this.name || "toggle";
+      return this.name || (this.duration ? "toggle " + this.duration + "s" : "toggle");
     }
   });
 </script>
@@ -21,8 +22,12 @@
 
 <script type="text/x-red" data-template-name="toggle">
   <div class="form-row">
-    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
     <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-duration"><i class="fa fa-clock-o"></i> Duration</label>
+    <input type="text" id="node-input-duration">
   </div>
   <div class="form-row">
     <label>&nbsp;</label>
